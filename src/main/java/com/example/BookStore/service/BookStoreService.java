@@ -12,5 +12,4 @@ public interface BookStoreService {
     void deleteById(int theId);
     Optional<BookStore> findById(int theId);
 
-
 }
