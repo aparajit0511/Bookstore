@@ -10,6 +10,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/")
+@CrossOrigin
 public class BookStoreRestController {
 
     private BookStoreService bookStoreService;
@@ -34,9 +35,11 @@ public class BookStoreRestController {
         return findId;
     }
 
-    @PostMapping("/api/add-books")
+    @PostMapping("/books")
     public BookStore addNewBook(@RequestBody BookStore bookStore){
-        return bookStoreService.save(bookStore);
+        bookStore.setId(0);
+        BookStore dBook = bookStoreService.save(bookStore);
+        return dBook;
     }
 
     @PutMapping("/api/add-books")
