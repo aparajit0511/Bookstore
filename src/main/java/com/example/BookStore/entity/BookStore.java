@@ -11,6 +11,9 @@ public class BookStore {
    @Column(name="id")
    private int id;
 
+   @Column(name="bookId",unique = true)
+   private String bookId;
+
    @Column(name="title")
    private String title;
 
@@ -25,12 +28,13 @@ public class BookStore {
 
    public BookStore(){}
 
-    public BookStore(int id,String title,String author,String genre, double price){
+    public BookStore(int id,String title,String author,String genre, double price,String bookId){
        this.id = id;
        this.title = title;
        this.author = author;
        this.genre = genre;
        this.price = price;
+       this.bookId = bookId;
     }
 
     public int getId() {
@@ -39,6 +43,15 @@ public class BookStore {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+
+    public String getBookId() {
+        return bookId;
+    }
+
+    public void setBookId(String bookId) {
+        this.bookId = bookId;
     }
 
     public String getTitle() {
@@ -77,6 +90,7 @@ public class BookStore {
     public String toString() {
         return "BookStore{" +
                 "id=" + id +
+                "bookId=" + bookId + '\'' +
                 ", title='" + title + '\'' +
                 ", author='" + author + '\'' +
                 ", genre='" + genre + '\'' +

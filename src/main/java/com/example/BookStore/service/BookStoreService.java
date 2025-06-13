@@ -9,7 +9,7 @@ public interface BookStoreService {
 
     List<BookStore> findAll();
     BookStore save (BookStore bookStore);
-    void deleteById(int theId);
-    Optional<BookStore> findById(int theId);
+    void deleteById(String bookId);
+    Optional<BookStore> findById(String bookId);
 
 }

@@ -30,12 +30,13 @@ public class BookStoreServiceImpl implements BookStoreService {
     }
 
     @Transactional
-    public void deleteById(int theId){
-        bookStoreRepository.deleteById(theId);
+    public void deleteById(String bookId){
+        bookStoreRepository.deleteByBookId(bookId);
     }
 
-    public Optional<BookStore> findById(int theId){
-        return bookStoreRepository.findById(theId);
+    public Optional<BookStore> findById(String bookId){
+
+        return bookStoreRepository.findByBookId(bookId);
     }
 
 }
