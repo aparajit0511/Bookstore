@@ -46,9 +46,21 @@ public class BookStoreRestController {
     }
 
     @PutMapping("/api/add-books")
-    public BookStore updateBook(@RequestBody BookStore bookStore){
-        return bookStoreService.save(bookStore);
+    public BookStore updateBook(@RequestBody BookStore incomingBook) {
+        // Step 1: Find existing book by bookId
+        BookStore existingBook = bookStoreService.findById(incomingBook.getBookId())
+                .orElseThrow(() -> new RuntimeException("Book with ID " + incomingBook.getBookId() + " not found"));
+
+        // Step 2: Update fields (keep the same `id`)
+        existingBook.setTitle(incomingBook.getTitle());
+        existingBook.setAuthor(incomingBook.getAuthor());
+        existingBook.setGenre(incomingBook.getGenre());
+        existingBook.setPrice(incomingBook.getPrice());
+
+        // Step 3: Save the updated book
+        return bookStoreService.save(existingBook);
     }
+
 
     @DeleteMapping("/api/delete-book/{bookId}")
     public void deleteById(@PathVariable String bookId){

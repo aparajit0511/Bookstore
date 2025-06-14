@@ -29,9 +29,13 @@ public class BookStoreServiceImpl implements BookStoreService {
         return bookStoreRepository.save(bookStore);
     }
 
+    @Override
     @Transactional
     public void deleteById(String bookId){
-        bookStoreRepository.deleteByBookId(bookId);
+
+        BookStore book = bookStoreRepository.findByBookId(bookId)
+                .orElseThrow(() -> new RuntimeException("Book not found"));
+        bookStoreRepository.delete(book);
     }
 
     public Optional<BookStore> findById(String bookId){
