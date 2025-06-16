@@ -35,6 +35,7 @@ public class BookStoreServiceImpl implements BookStoreService {
 
         BookStore book = bookStoreRepository.findByBookId(bookId)
                 .orElseThrow(() -> new RuntimeException("Book not found"));
+        // check this
         bookStoreRepository.delete(book);
     }
 
